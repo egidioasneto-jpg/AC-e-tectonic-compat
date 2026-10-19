@@ -1,0 +1,44 @@
+name: Compilar mod
+
+on:
+  push:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '21'
+
+      - uses: gradle/actions/setup-gradle@v4
+        with:
+          gradle-version: '8.10.2'
+
+      # Baixa do Modrinth o Alex's Caves (Unofficial Port) e o Citadel que ele exige.
+      # So servem para compilar; nao vao dentro do .jar final.
+      - name: Baixar Alex's Caves e Citadel
+        run: |
+          set -e
+          mkdir -p libs
+          API=https://api.modrinth.com/v2
+          FILTER='loaders=%5B%22neoforge%22%5D&game_versions=%5B%221.21.1%22%5D'
+          AC=$(curl -sf "$API/project/kSsLSjEt/version?$FILTER" | jq '.[0]')
+          echo "$AC" | jq -r '.files[] | select(.primary) | .url' | xargs -n1 curl -sfL -O --output-dir libs
+          for dep in $(echo "$AC" | jq -r '.dependencies[] | select(.dependency_type=="required") | .project_id'); do
+            curl -sf "$API/project/$dep/version?$FILTER" | jq -r '.[0].files[] | select(.primary) | .url' \
+              | xargs -n1 curl -sfL -O --output-dir libs
+          done
+          ls -l libs
+
+      - name: Compilar
+        run: gradle build --no-daemon
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: ac_tectonic_compat-jar
+          path: build/libs/*.jar
