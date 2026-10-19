@@ -3,7 +3,7 @@
   "target_function": "tectonic:underground_river/total",
   "wrapper_function": {
     "type": "minecraft:range_choice",
-    "input": "ac_tectonic_compat:ac_zone",
+    "input": { "type": "ac_tectonic_compat:ac_zone" },
     "min_inclusive": 0.5,
     "max_exclusive": 1.5,
     "when_in_range": 64.0,
