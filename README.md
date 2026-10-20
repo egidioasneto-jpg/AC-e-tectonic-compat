@@ -61,3 +61,16 @@ Dependências em jogo: Alex's Caves (port), Tectonic 3.x (versão **mod**, não 
 - Vale só para chunks gerados com o mod instalado.
 
 Licença: GPL-3.0 (o mod chama código GPL do Alex's Caves).
+
+## 0.2.0 – corrige mudanças do port
+
+- **Pedras dos biomas** (radrock, galena, guanostone…): o port só convertia a pedra até Y 50.
+  Agora volta à regra original: converte onde o *bioma* é do AC, em toda a altura.
+- **Estruturas fora do bioma**: o port permitia as estruturas em qualquer bioma do Overworld
+  (`#alexscaves:has_cave_structures`). Voltam a exigir o bioma certo, como no original.
+- **Forlorn Hollows**: volta o formato original de cânion (o port trocou por uma "tigela") e
+  volta a gerar cânions em todo o bioma, não só a 3 chunks do centro. Espaçamento original (6/4).
+- **Árvores** com a densidade original (o port comprimiu a faixa de altura sem reduzir a quantidade).
+
+Também recomendado: em `config/alexscaves-general.toml`, voltar aos valores do original
+`cave_biome_mean_width = 300.0` e `cave_biome_mean_separation = 900` (o port usa 160 e 2000).
