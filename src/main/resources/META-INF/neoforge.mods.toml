@@ -1,0 +1,54 @@
+modLoader = "javafml"
+loaderVersion = "[4,)"
+license = "GPL-3.0"
+
+[[mods]]
+modId = "ac_tectonic_compat"
+version = "0.3.5"
+displayName = "Alex's Caves x Tectonic Compat"
+authors = "Egídio (Forged Horizons)"
+description = '''
+Faz os biomas e as cavernas do Alex's Caves (port 1.21.1) gerarem com o Tectonic,
+e impede que as cavernas e rios subterraneos do Tectonic deformem as cavernas do Alex's Caves.
+'''
+
+[[accessTransformers]]
+file = "META-INF/accesstransformer.cfg"
+
+[[mixins]]
+config = "ac_tectonic_compat.mixins.json"
+
+[[dependencies.ac_tectonic_compat]]
+modId = "neoforge"
+type = "required"
+versionRange = "[21.1.0,)"
+ordering = "NONE"
+side = "BOTH"
+
+[[dependencies.ac_tectonic_compat]]
+modId = "minecraft"
+type = "required"
+versionRange = "[1.21.1,1.21.2)"
+ordering = "NONE"
+side = "BOTH"
+
+[[dependencies.ac_tectonic_compat]]
+modId = "alexscaves"
+type = "required"
+versionRange = "[2.0.0,)"
+ordering = "AFTER"
+side = "BOTH"
+
+[[dependencies.ac_tectonic_compat]]
+modId = "tectonic"
+type = "required"
+versionRange = "[3.0.0,)"
+ordering = "AFTER"
+side = "BOTH"
+
+[[dependencies.ac_tectonic_compat]]
+modId = "lithostitched"
+type = "required"
+versionRange = "*"
+ordering = "AFTER"
+side = "BOTH"
