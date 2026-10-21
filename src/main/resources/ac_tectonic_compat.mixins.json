@@ -1,0 +1,21 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "dev.forgedhorizons.actcompat.mixin",
+  "compatibilityLevel": "JAVA_21",
+  "mixins": [
+    "MultiNoiseBiomeSourceMixin",
+    "ACBiomeConditionSourceMixin",
+    "CavePieceAccessor",
+    "ForlornCanyonStructureMixin",
+    "ForlornCanyonStructurePieceMixin",
+    "ACBiomeRarityAccessor",
+    "DinoBowlStructureMixin",
+    "FerrocaveStructurePieceMixin",
+    "ForlornBridgeStructureMixin",
+    "CakeCaveStructureMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}
